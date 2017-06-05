@@ -145,6 +145,17 @@ Player.prototype.checkPack = function() {
  * @return {boolean} true/false     Whether player was able to store item in pack.
  */
 
+ Player.prototype.takeItem = function(item, weapon, food) {
+  if ( this._pack.length < 3 ) {
+    this._pack.push(item);
+    console.log(this.name, item.name);
+    console.log(true);
+  } else {
+    console.log('You can only hold 3 items.');
+    console.log(false);
+  }
+ };
+
 
 /**
  * Player Class Method => discardItem(item)
