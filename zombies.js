@@ -111,8 +111,6 @@ Food.prototype = Object.create(Item.prototype);
  }
 
 
-
-
 /**
  * Player Class Method => checkPack()
  * -----------------------------
@@ -125,6 +123,9 @@ Food.prototype = Object.create(Item.prototype);
  * @name checkPack
  */
 
+Player.prototype.checkPack = function() {
+  console.log(this.getPack());
+};
 
 /**
  * Player Class Method => takeItem(item)
