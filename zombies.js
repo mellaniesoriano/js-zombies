@@ -93,6 +93,25 @@ Food.prototype = Object.create(Item.prototype);
  * @property {method} getMaxHealth         Returns private variable `maxHealth`.
  */
 
+ function Player(name, health, strength, speed) {
+  this._pack = [];
+  this._maxHealth = health;
+  this.name = name;
+  this.health = health;
+  this.strength = strength;
+  this.speed = speed;
+  this.isAlive = true;
+  this.equipped = false;
+  this.getPack = function() {
+    return this._pack;
+  };
+  this.getMaxHealth = function() {
+    return this._maxHealth;
+  };
+ }
+
+
+
 
 /**
  * Player Class Method => checkPack()
