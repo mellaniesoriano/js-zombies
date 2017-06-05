@@ -219,16 +219,15 @@ Player.prototype.checkPack = function() {
 
  Player.prototype.equip = function(itemToEquip) {
   var weaponIndex = this.getPack().indexOf(itemToEquip);
-  if ( !(itemToEquip instanceof Weapon) ) {
-    return false;
-  }
-  if ( weaponIndex !== -1 ) {
-    if ( this.equipped === false ) {
-      this.equipped = itemToEquip;
-      this.discardItem(itemToEquip);
-    } else {
-      this.getPack().splice(weaponIndex, 1, this.equipped);
-      this.equipped = itemToEquip;
+  if ( itemToEquip instanceof Weapon ) {
+    if ( weaponIndex !== -1 ) {
+      if ( this.equipped === false ) {
+        this.equipped = itemToEquip;
+        this.discardItem(itemToEquip);
+      } else {
+        this.getPack().splice(weaponIndex, 1, this.equipped);
+        this.equipped = itemToEquip;
+      }
     }
   }
  };
@@ -253,6 +252,19 @@ Player.prototype.checkPack = function() {
  * @param {Food} itemToEat  The food item to eat.
  */
 
+ Player.prototype.eat = function(itemToEat) {
+  var foodIndex = this.getPack().indexOf(itemToEat);
+  if ( itemToEat instanceof Food ) {
+    if ( foodIndex !== -1 ) {
+    this.discardItem(itemToEat);
+    this.health += itemToEat.energy;
+    }
+  }
+  if ( this.health > this.getMaxHealth() ) {
+    this.health = this.getMaxHealth();
+  }
+ };
+
 
 /**
  * Player Class Method => useItem(item)
@@ -267,6 +279,14 @@ Player.prototype.checkPack = function() {
  * @param {Item/Weapon/Food} item   The item to use.
  */
 
+Player.prototype.useItem = function(item) {
+  if ( item instanceof Weapon ) {
+    this.equip(item);
+   }
+   if ( item instanceof Food ) {
+    this.eat(item);
+   }
+};
 
 /**
  * Player Class Method => equippedWith()
