@@ -146,7 +146,7 @@ Player.prototype.checkPack = function() {
  */
 
  Player.prototype.takeItem = function(item) {
-  if ( this._pack.length < 3 ) {
+  if ( this.getPack().length < 3 ) {
     this._pack.push(item);
     console.log(this.name, item.name);
     console.log(true);
@@ -184,14 +184,14 @@ Player.prototype.checkPack = function() {
  */
 
  Player.prototype.discardItem = function(item) {
-  var itemIndex = this._pack.indexOf(item);
+  var itemIndex = this.getPack().indexOf(item);
   // console.log('checking..', itemIndex);
   if ( itemIndex === -1 ) {
-    console.log(this.name, ' nothing was discarded.');
+    console.log(this.name, 'nothing was discarded');
     return false;
   } else {
     this._pack.splice(itemIndex, 1);
-    console.log(this.name, item.name, 'successfully discarded.');
+    console.log(this.name, 'successfully discarded', item.name);
     return true;
   }
  };
@@ -216,6 +216,22 @@ Player.prototype.checkPack = function() {
  * @name equip
  * @param {Weapon} itemToEquip  The weapon item to equip.
  */
+
+ Player.prototype.equip = function(itemToEquip) {
+  var weaponIndex = this.getPack().indexOf(itemToEquip);
+  if ( !(itemToEquip instanceof Weapon) ) {
+    return false;
+  }
+  if ( weaponIndex !== -1 ) {
+    if ( this.equipped === false ) {
+      this.equipped = itemToEquip;
+      this.discardItem(itemToEquip);
+    } else {
+      this.getPack().splice(weaponIndex, 1, this.equipped);
+      this.equipped = itemToEquip;
+    }
+  }
+ };
 
 
 /**
