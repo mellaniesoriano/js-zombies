@@ -145,7 +145,7 @@ Player.prototype.checkPack = function() {
  * @return {boolean} true/false     Whether player was able to store item in pack.
  */
 
- Player.prototype.takeItem = function(item, weapon, food) {
+ Player.prototype.takeItem = function(item) {
   if ( this._pack.length < 3 ) {
     this._pack.push(item);
     console.log(this.name, item.name);
@@ -182,6 +182,19 @@ Player.prototype.checkPack = function() {
  * @param {Item/Weapon/Food} item   The item to discard.
  * @return {boolean} true/false     Whether player was able to remove item from pack.
  */
+
+ Player.prototype.discardItem = function(item) {
+  var itemIndex = this._pack.indexOf(item);
+  // console.log('checking..', itemIndex);
+  if ( itemIndex === -1 ) {
+    console.log(this.name, ' nothing was discarded.');
+    return false;
+  } else {
+    this._pack.splice(itemIndex, 1);
+    console.log(this.name, item.name, 'successfully discarded.');
+    return true;
+  }
+ };
 
 
 /**
