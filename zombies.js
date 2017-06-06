@@ -415,11 +415,19 @@ Player.prototype.useItem = function(item) {
  * @param {number} speed            The zombie's speed.
  */
 
+ function RangedZombie(health, strength, speed) {
+  Zombie.call(this, health, strength, speed);
+ }
+
 
 /**
  * RangedZombie Extends Zombie Class
  * -----------------------------
  */
+
+ RangedZombie.prototype = Object.create(Zombie.prototype, {
+  constructor : RangedZombie
+ });
 
 
 
