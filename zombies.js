@@ -353,11 +353,19 @@ Player.prototype.useItem = function(item) {
  * @param {number} speed            The zombie's speed.
  */
 
+ function FastZombie(health, strength, speed) {
+    Zombie.call(this, health, strength, speed);
+ }
+
 
 /**
  * FastZombie Extends Zombie Class
  * -----------------------------
  */
+
+ FastZombie.prototype = Object.create(Zombie.prototype, {
+  constructor : FastZombie
+});
 
 
 
