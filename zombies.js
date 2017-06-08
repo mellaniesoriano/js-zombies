@@ -125,6 +125,17 @@
     console.log(this.getPack());
   }
 
+  takeItem(item) {
+    if ( this.getPack().length < 3 ) {
+      this._pack.push(item);
+      console.log(this.name, item.name);
+      console.log(true);
+    } else {
+      console.log('You can only hold 3 items.');
+      console.log(false);
+    }
+  }
+
  }
 
 
