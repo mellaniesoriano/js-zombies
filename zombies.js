@@ -148,6 +148,22 @@
     }
   }
 
+  equip(itemToEquip) {
+    var weaponIndex = this.getPack().indexOf(itemToEquip);
+    if ( itemToEquip instanceof Weapon ) {
+      if ( weaponIndex !== -1 ) {
+        if ( this.equipped === false ) {
+          this.equipped = itemToEquip;
+          this.discardItem(itemToEquip);
+        } else {
+          this.getPack().splice(weaponIndex, 1, this.equipped);
+          this.equipped = itemToEquip;
+        }
+      }
+    }
+  }
+
+
  }
 
 
