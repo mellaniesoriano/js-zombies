@@ -185,6 +185,16 @@
     }
   }
 
+  equippedWith() {
+    if ( this.equipped === false ) {
+      console.log(this.name, 'nothing is equipped');
+      return false;
+    } else {
+      console.log(this.name, 'is equipped with', this.equipped.name);
+      return this.equipped.name;
+    }
+  }
+
  }
 
 
