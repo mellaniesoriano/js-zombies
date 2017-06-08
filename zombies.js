@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 /**
  * Class => Item(name)
  * -----------------------------
@@ -30,6 +32,13 @@
  * @param {number} damage   The weapon's damage.
  * @property {number} damage
  */
+
+ class Weapon extends Item {
+  constructor(name, damage){
+    super(name);
+    this.damage = damage;
+  }
+ }
 
 
 /**
