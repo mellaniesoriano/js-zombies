@@ -136,6 +136,18 @@
     }
   }
 
+  discardItem(item) {
+    var itemIndex = this.getPack().indexOf(item);
+    if ( itemIndex === -1 ) {
+      console.log(this.name, 'nothing was discarded');
+      return false;
+    } else {
+      this._pack.splice(itemIndex, 1);
+      console.log(this.name, 'successfully discarded', item.name);
+      return true;
+    }
+  }
+
  }
 
 
